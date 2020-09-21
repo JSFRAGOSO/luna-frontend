@@ -1,0 +1,27 @@
+.CallBack {
+  text-align: left;
+  background-color: #0e0f12;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  padding: 20px 10px 20px 30px;
+}
+
+.CallBack-content {
+  flex: 1;
+  display: flex;
+  background-color: #0e0f12;
+  min-height: 100vh;
+  max-width: 520px;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 30px;
+  font-size: 24px;
+  color: white;
+}
+
+.CallBack-content p {
+  margin-top: 160px;
+}
+
+

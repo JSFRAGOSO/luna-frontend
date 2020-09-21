@@ -1,0 +1,55 @@
+.Dashboard {
+  text-align: left;
+  background-color: #0e0f12;
+  display: flex;
+  padding: 0px 10px 20px 30px;
+}
+
+.Dashboard-content {
+  flex: 1;
+  display: flex;
+  background-color: #0e0f12;
+  min-height: 100vh;
+  max-width: 820px;
+  flex-direction: row;
+  justify-content: center;
+  padding: 20px 30px;
+  font-size: 24px;
+  color: white;
+  margin-left: auto;
+}
+
+
+.Dashboard-content span{
+  white-space: pre-line;
+}
+
+.Dashboard-track-info {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  width: 30%;
+  align-self: flex-start;
+  padding: 20px 30px;
+}
+
+.Dashboard-track-info img{
+  width: 100px;
+  height: 100px;
+}
+
+.Dashboard-track-info div {
+  display: flex;
+  justify-items: center;
+  flex-direction: column;
+  margin-left: 15px;
+}
+
+.Dashboard-track-info strong {
+  color: #fff;
+  font-size: 26px;
+}
+.Dashboard-track-info span {
+  color: #fff;
+  font-size: 22px;
+}
