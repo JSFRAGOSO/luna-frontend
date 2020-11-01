@@ -1,47 +1,106 @@
 import React, { useEffect, useState } from 'react';
 import './Dashboard.css';
 import lunaApi from '../../api/lunaApi';
+import {connect, keepOnTrack} from '../../api/socket';
 import { useAuth } from '../../hooks/Auth'
+import { useCallback } from 'react';
 
 function Dashboard() {
   
   const [trackInfo, setTrackInfo] = useState({});
-  const [lyrics, setLyrics] = useState('');
-  
+  const [progress, setProgress] = useState(0);
+  const [currentLyrics, setCurrentLyrics] = useState('');
+  const [syncLyrics, setSyncLyrics] = useState([]);
   const {getToken} = useAuth();
   
+
+  const handleProgressUpdate = useCallback(progress => {
+    setProgress(progress)
+  }, [])
+
+  const handleTrackUpdate = useCallback(track => {
+    setTrackInfo((state) => {
+      if(state.track !== track.track){
+        return track
+      }
+      else
+      return state
+    });
+  }, [])
+
   
   useEffect(() => {
     async function loadTrack(){
       const response = await lunaApi.get(`/current/track?token=${getToken()}`);
 
       setTrackInfo(response.data);
-      
     }
 
-    async function loadLyric(){
-      const response = await lunaApi.get('/searchLyrics', {
-        params:{
-          artist: trackInfo.artist,
-          track: trackInfo.track,
-        }
-      });
-
-      setLyrics(response.data);
-      
+    function setupWebSocket(){
+      connect();
     }
   
     loadTrack();
-    loadLyric();
+
+    setupWebSocket();
   
-  }, [getToken, trackInfo.artist, trackInfo.track]);
+  }, [getToken]);
+
+
+  useEffect(() => {
+    keepOnTrack(track => {
+      handleProgressUpdate(track.progress_ms);
+      handleTrackUpdate(track)
+    })
+}, [handleProgressUpdate, handleTrackUpdate])
+
+useEffect(() => {
+
+  async function loadLyric(){
+    const response = await lunaApi.get(`/lyrics/${trackInfo.track_id}`);
+    
+    if(response.data)
+      setSyncLyrics(response.data.lines)
+  }
+  
+  loadLyric();
+
+}, [trackInfo]);
+
+useEffect(() => {
+  
+  if(!!syncLyrics){
+  
+    const lyricsSoFar = syncLyrics.filter(lyric => {
+     
+      if(Math.abs(lyric.time) <= (Math.abs(progress) + 100)){
+        
+        return lyric
+      }
+
+      return null
+    })
+    if(lyricsSoFar.length){
+      console.log(lyricsSoFar[lyricsSoFar.length - 1])
+      setCurrentLyrics((state) => {
+        if(state !== lyricsSoFar[lyricsSoFar.length - 1].words[0].string){
+          return lyricsSoFar[lyricsSoFar.length - 1].words[0].string
+        }
+        else
+        return state
+      });
+      
+    }
+  }
+}, [syncLyrics, progress])
+
   
   return (
     <div className="Dashboard">
       <div className="Dashboard-content">
         <div>
           <span>
-            {lyrics}
+            {currentLyrics}
           </span>
         </div>
       </div>
