@@ -9,7 +9,12 @@ function Dashboard() {
   
   const [trackInfo, setTrackInfo] = useState({});
   const [progress, setProgress] = useState(0);
-  const [currentLyrics, setCurrentLyrics] = useState('');
+  const [animationClass, setAnimationClass] = useState('');
+  
+  const [prevLine, setPrevLine] = useState({});
+  const [currentLine, setCurrentLine] = useState({});
+  const [nextLine, setNextLine] = useState({});
+
   const [syncLyrics, setSyncLyrics] = useState([]);
   const {getToken} = useAuth();
   
@@ -30,8 +35,10 @@ function Dashboard() {
 
   
   useEffect(() => {
+    const token = getToken();
+    console.log(token)
     async function loadTrack(){
-      const response = await lunaApi.get(`/current/track?token=${getToken()}`);
+      const response = await lunaApi.get(`/current/track?token=${token}`);
 
       setTrackInfo(response.data);
     }
@@ -43,7 +50,7 @@ function Dashboard() {
     loadTrack();
 
     setupWebSocket();
-  
+    
   }, [getToken]);
 
 
@@ -58,7 +65,9 @@ useEffect(() => {
 
   async function loadLyric(){
     const response = await lunaApi.get(`/lyrics/${trackInfo.track_id}`);
-    
+    setCurrentLine({})
+    setPrevLine({})
+    setNextLine({})
     if(response.data)
       setSyncLyrics(response.data.lines)
   }
@@ -70,38 +79,45 @@ useEffect(() => {
 useEffect(() => {
   
   if(!!syncLyrics){
-  
-    const lyricsSoFar = syncLyrics.filter(lyric => {
-     
-      if(Math.abs(lyric.time) <= (Math.abs(progress) + 100)){
-        
-        return lyric
-      }
-
-      return null
-    })
-    if(lyricsSoFar.length){
-      console.log(lyricsSoFar[lyricsSoFar.length - 1])
-      setCurrentLyrics((state) => {
-        if(state !== lyricsSoFar[lyricsSoFar.length - 1].words[0].string){
-          return lyricsSoFar[lyricsSoFar.length - 1].words[0].string
-        }
-        else
-        return state
-      });
+    syncLyrics.forEach((line, index) => {
+      let maxLine = 0;
       
-    }
+      if(line.time <= progress & line.time > maxLine){
+          
+        setCurrentLine(line)
+        setPrevLine(syncLyrics[index - 1])
+        setNextLine(syncLyrics[index + 1])
+        
+        
+      }
+    })
   }
-}, [syncLyrics, progress])
+}, [syncLyrics, progress, currentLine])
 
   
   return (
     <div className="Dashboard">
       <div className="Dashboard-content">
-        <div>
-          <span>
-            {currentLyrics}
+        <div className="Dashboard-lyrics">
+        {
+          prevLine &&
+          <span id="NocurrentLine" className={`${animationClass}`} onAnimationEnd={() => setAnimationClass('')}>
+            {!!prevLine.words ? prevLine.words[0].string : ''}
           </span>
+        }
+
+        {
+          currentLine && 
+          <span id="currentLine" className={`${animationClass}`} onAnimationEnd={() => setAnimationClass('')}>
+            {!!currentLine.words ? currentLine.words[0].string : ''}
+          </span>
+        }
+          {
+          nextLine && 
+          <span id="NocurrentLine" className={`${animationClass}`} onAnimationEnd={() => setAnimationClass('')}>
+            {!!nextLine.words ? nextLine.words[0].string : ''}
+          </span>
+          }
         </div>
       </div>
       <div className="Dashboard-track-info">

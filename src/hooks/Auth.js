@@ -15,7 +15,6 @@ const AuthProvider = ({ children }) => {
   });
 
   const signIn = useCallback(async ({ code, redirect_uri }) => {
-    console.log('chegou aqui?')
     const response = await lunaApi.post('/token/exchange', {
       redirect_uri,
       code,
@@ -26,8 +25,9 @@ const AuthProvider = ({ children }) => {
     localStorage.setItem('@Luna:access_token', access_token);
     
     setData({access_token});
-    console.log(data);
-  }, [data]);
+
+    return response.data;
+  }, []);
   
   const getToken = useCallback(() => {
     const access_token = localStorage.getItem('@Luna:access_token');
