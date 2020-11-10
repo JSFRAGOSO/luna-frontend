@@ -1,7 +1,9 @@
+# 🧾 Sobre
 
-<h1 align="center">
-  <img src="https://ik.imagekit.io/5sbzuouhco/Luna_Icoon_EvaGO6H9F.png"/>
-</h1>
+O projeto **LUNA** é um projeto desenvolvido durante o curso de **Análise e Desenvolvimento de Sistemas** como trabalho de conclusáo de curso.
+
+O objetivo geral da aplicação é exibir as letras das músicas em tempo real, de acordo com o que está sendo reproduzido no player de música do usuário de forma totalmente integrada
+
 <h1>
   <img src="https://ik.imagekit.io/5sbzuouhco/20201109_231253_qf9n20F7n.gif"/>
 </h1>
@@ -10,12 +12,6 @@
 - [Sobre](#-sobre)
 - [Tecnologias utilizadas](#-tecnologias-utilizadas)
 - [Como baixar o projeto](#-como-baixar-o-projeto)
-
-# 🧾 Sobre
-
-O projeto **LUNA** é um projeto desenvolvido durante o curso de **Análise e Desenvolvimento de Sistemas** como trabalho de conclusáo de curso.
-
-O objetivo geral da aplicação é exibir as letras das músicas em tempo real, de acordo com o que está sendo reproduzido no player de música do usuário de forma totalmente integrada
 
 # 👨‍💻 Tecnologias utilizadas
 - [ReactJS](https://pt-br.reactjs.org/)
