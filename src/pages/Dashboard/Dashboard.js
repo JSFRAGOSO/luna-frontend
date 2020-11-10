@@ -80,15 +80,12 @@ useEffect(() => {
   
   if(!!syncLyrics){
     syncLyrics.forEach((line, index) => {
-      let maxLine = 0;
       
-      if(line.time <= progress & line.time > maxLine){
-          
+      if(line.time <= progress){   
+        
         setCurrentLine(line)
         setPrevLine(syncLyrics[index - 1])
         setNextLine(syncLyrics[index + 1])
-        
-        
       }
     })
   }
