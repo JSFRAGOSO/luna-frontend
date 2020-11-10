@@ -9,7 +9,6 @@ O objetivo geral da aplicação é exibir as letras das músicas em tempo real, 
 </h1>
 
 # 👓 Indice
-- [Sobre](#-sobre)
 - [Tecnologias utilizadas](#-tecnologias-utilizadas)
 - [Como baixar o projeto](#-como-baixar-o-projeto)
 
@@ -20,32 +19,44 @@ O objetivo geral da aplicação é exibir as letras das músicas em tempo real, 
 - [Mongoose](https://mongoosejs.com/)
 
 # 📌 Como baixar o projeto
-
-### Clone o projeto em seu computador com:
+Para baixar e executar o projeto localmente, você vai precisar baixar a aplicação cliente e a aplicação servidor, para isso, siga os passos abaixo:
+### Clone os projetos em seu computador com:
 ```bash
-$ git clone https://github.com/JSFRAGOSO/gostack-githubexplorer.git
+$ git clone https://github.com/JSFRAGOSO/luna-frontend.git
+$ git clone https://github.com/JSFRAGOSO/luna-backend.git
 ```
-### Acesse a pasta do projeto com:
+### Acesse a pasta do projeto backend com:
 ```
-$ cd gostack-githubexplorer
+$ cd luna-backend
 ```
 ### Baixe as dependências do projeto com:
 ```
 $ yarn install
 ```
-### Inicialize o projeto em ambiente de desenvolvimento com :
+### Inicialize o projeto em ambiente de desenvolvimento com:
+```
+$ yarn dev
+```
+
+### Acesse a pasta do projeto frontend com:
+```
+$ cd luna-frontend
+```
+### Baixe as dependências do projeto com:
+```
+$ yarn install
+```
+### Inicialize o projeto em ambiente de desenvolvimento com:
 ```
 $ yarn start
 ```
-Abra [http://localhost:3000](http://localhost:3000) to visualizar a aplicação no browser.
-
+## Abra [http://localhost:3000](http://localhost:3000) to visualizar a aplicação no browser.
+---
 ---
 
-Feito com 💜 by Jonas Fragoso :wave:
+# ❔ Como o projeto funciona
 
-
-
-O primeiro passo para começar a integrar uma aplicação ao Spotify é registrar essa aplicação, para isso, é preciso acessar o site https://developer.spotify.com, criar uma conta ou autenticar-se, navegar até a aba Dashboard e criar uma nova aplicação, para isso será necessário fornecer um nome e uma descrição para a aplicação a ser criada, além de aceitar os termos de serviços da plataforma.
+## O primeiro passo para começar a integrar uma aplicação ao Spotify é registrar essa aplicação, para isso, é preciso acessar o site https://developer.spotify.com, criar uma conta ou autenticar-se, navegar até a aba Dashboard e criar uma nova aplicação, para isso será necessário fornecer um nome e uma descrição para a aplicação a ser criada, além de aceitar os termos de serviços da plataforma.
 Uma vez criada a aplicação no Dashboard do Spotify, tem-se o acesso a duas informações que são essenciais para a integração, que são o Client ID e o Client Secret, essas informações deverão ser armazenadas de forma segura dentro do projeto da aplicação pois elas serão enviadas no momento de realizar as chamadas à API de autenticação do Spotify.
 O próximo passo da integração é decidir qual o fluxo de autenticação que será utilizado, este processo consiste em solicitar a autorização do usuário do Spotify para acessar os seus dados, isso pode ocorrer através de quatro fluxos diferentes:
 
@@ -188,3 +199,5 @@ Ao obter sucesso nessa chamada, deverá ser retornado um JSON no seguinte format
 
 
 Através da propriedade “lyrics body” é possível obter a letra da música, e com essas duas chamadas realizadas temos o resultado esperado que seria a busca da letra através do nome do artista e do nome da música.
+
+Feito com 💜 by Jonas Fragoso
