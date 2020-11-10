@@ -11,19 +11,17 @@
 - [Tecnologias utilizadas](#-tecnologias-utilizadas)
 - [Como baixar o projeto](#-como-baixar-o-projeto)
 
-<h1>
-  <img src="https://ik.imagekit.io/w1inds4xic/github_explorer_Hg4g_9Bwk.jpg"/>
-</h1>
-
 # 🧾 Sobre
 
-O projeto **Github explorer** é um projeto desenvolvido durante o curso **BootCamp GoStack** para praticarmos os conceitos de React aprendidos durante as aulas
+O projeto **LUNA** é um projeto desenvolvido durante o curso de **Análise e Desenvolvimento de Sistemas** como trabalho de conclusáo de curso.
+
+O objetivo geral da aplicação é exibir as letras das músicas em tempo real, de acordo com o que está sendo reproduzido no player de música do usuário de forma totalmente integrada
 
 # 👨‍💻 Tecnologias utilizadas
 - [ReactJS](https://pt-br.reactjs.org/)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Axios](https://www.npmjs.com/package/axios)
-- [Styled Components](https://styled-components.com/)
+- [NodeJS](https://nodejs.org/en/)
+- [Socket IO](https://socket.io/)
+- [Mongoose](https://mongoosejs.com/)
 
 # 📌 Como baixar o projeto
 
