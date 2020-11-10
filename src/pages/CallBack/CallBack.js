@@ -5,17 +5,18 @@ import './CallBack.css';
 
 function CallBack({history}) {
   const params =  new URLSearchParams(useLocation().search);
-  const { signIn } = useAuth();
+  const { signIn, } = useAuth();
 
   useEffect(() => {
     const code = params.get('code');
-
-    async function loadToken() {
+    let signinresponse;
+    async function awaitToken() {
       signIn({code, redirect_uri:'http://localhost:3000/callback'})
-      history.push('dashboard')
     }
-
-    loadToken()
+    
+    awaitToken().then(() => {history.push('dashboard', {signinresponse})})
+    
+    
   }, [history, params, signIn])
 
   return (
