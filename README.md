@@ -143,6 +143,8 @@ POST https://accounts.spotify.com/api/token
 
 <br/>
 
+<img src="https://ik.imagekit.io/5sbzuouhco/Luna_Dashboard2_oZUR8mOcc.png"/>
+
 ### A integração com o Musixmatch possui semelhanças com a integração com o Spotify já demonstrada, porém é mais simples e não possui tantos passos. A primeira coisa a se fazer é acessar https://developer.musixmatch.com clicar em “login” para se autenticar ou “sign up” para criar uma nova conta. Uma vez autenticado, vá até o perfil do usuário clicando sobre o “username” no canto direito superior e então clique em “Dashboard” e por fim em “Applications”, aqui será necessário registrar a aplicação, após o registro será disponibilizado um “API key”, essa chave deverá ser utilizada nas chamadas à API do Musixmatch de acordo com esse exemplo:
 
  ```
